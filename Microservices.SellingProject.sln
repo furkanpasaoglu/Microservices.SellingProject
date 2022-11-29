@@ -36,8 +36,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\Clients\Blazo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BasketService", "BasketService", "{AF186624-1B86-4F54-A4EF-97F83DC8C89E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketService.Api", "src\Services\BasketService\BasketService.Api\BasketService.Api.csproj", "{A12FDE95-2895-489D-869A-0974D8BA6935}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CatalogService", "CatalogService", "{847F08E1-A31D-4E6C-906F-1941766BE997}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityService", "IdentityService", "{9B8E0AC8-AEBC-4F59-838E-2F7BE5013F2C}"
@@ -64,13 +62,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.UnitTest", "tests\BuildingBlocks\EventBus.UnitTest\EventBus.UnitTest.csproj", "{4B0017F9-A768-4B9D-8576-A6A513BA0F62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Api", "src\Services\CatalogService\CatalogService.Api\CatalogService.Api.csproj", "{5E2B1D24-A9EE-4542-8FC9-FBAF6A053444}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Api", "src\Services\CatalogService\CatalogService.Api\CatalogService.Api.csproj", "{5E2B1D24-A9EE-4542-8FC9-FBAF6A053444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService.Api", "src\Services\PaymentService\PaymentService.Api\PaymentService.Api.csproj", "{4C4D8984-2E61-4637-AA91-264788666691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService.Api", "src\Services\PaymentService\PaymentService.Api\PaymentService.Api.csproj", "{4C4D8984-2E61-4637-AA91-264788666691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Api", "src\Services\IdentityService\IdentityService.Api\IdentityService.Api.csproj", "{52A0DE54-4874-4BAA-897B-8A5B796C6390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Api", "src\Services\IdentityService\IdentityService.Api\IdentityService.Api.csproj", "{52A0DE54-4874-4BAA-897B-8A5B796C6390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.ApiGateway", "src\ApiGateways\WebApiGateway\Web.ApiGateway\Web.ApiGateway.csproj", "{982FD1B0-B4A4-4521-A927-447C9136729D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.ApiGateway", "src\ApiGateways\WebApiGateway\Web.ApiGateway\Web.ApiGateway.csproj", "{982FD1B0-B4A4-4521-A927-447C9136729D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-compose-files", "docker-compose-files", "{8FCAC7A8-4BE0-4BD8-B8BC-CE9E5D76E71D}"
 EndProject
@@ -93,6 +91,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlserver", "sqlserver", "{
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Users\Furkan\Desktop\MicroserviceProject_SellingBuddy_youtube-master\docker-compose-files\sqlserver\docker-compose.yml = ..\..\..\..\Users\Furkan\Desktop\MicroserviceProject_SellingBuddy_youtube-master\docker-compose-files\sqlserver\docker-compose.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketService.Api", "src\Services\BasketService\BasketService.Api\BasketService.Api.csproj", "{05633971-C56E-4DC4-AC2B-B6B40B20BC26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -120,10 +120,6 @@ Global
 		{A5ADB73B-BDFF-42D1-9F0A-B717FFC50FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5ADB73B-BDFF-42D1-9F0A-B717FFC50FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5ADB73B-BDFF-42D1-9F0A-B717FFC50FE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A12FDE95-2895-489D-869A-0974D8BA6935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A12FDE95-2895-489D-869A-0974D8BA6935}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A12FDE95-2895-489D-869A-0974D8BA6935}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A12FDE95-2895-489D-869A-0974D8BA6935}.Release|Any CPU.Build.0 = Release|Any CPU
 		{08244983-F715-4C73-B8D9-8820939D1991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08244983-F715-4C73-B8D9-8820939D1991}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08244983-F715-4C73-B8D9-8820939D1991}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -164,6 +160,10 @@ Global
 		{982FD1B0-B4A4-4521-A927-447C9136729D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{982FD1B0-B4A4-4521-A927-447C9136729D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{982FD1B0-B4A4-4521-A927-447C9136729D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05633971-C56E-4DC4-AC2B-B6B40B20BC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05633971-C56E-4DC4-AC2B-B6B40B20BC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05633971-C56E-4DC4-AC2B-B6B40B20BC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05633971-C56E-4DC4-AC2B-B6B40B20BC26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -182,7 +182,6 @@ Global
 		{BDEA0BE5-B87E-460B-8B3C-2536D3AD70E8} = {27283D12-5764-4582-ACC0-56DA86C6C692}
 		{A5ADB73B-BDFF-42D1-9F0A-B717FFC50FE8} = {BDEA0BE5-B87E-460B-8B3C-2536D3AD70E8}
 		{AF186624-1B86-4F54-A4EF-97F83DC8C89E} = {E9A0F411-88AE-4F98-990C-B9C142633999}
-		{A12FDE95-2895-489D-869A-0974D8BA6935} = {AF186624-1B86-4F54-A4EF-97F83DC8C89E}
 		{847F08E1-A31D-4E6C-906F-1941766BE997} = {E9A0F411-88AE-4F98-990C-B9C142633999}
 		{9B8E0AC8-AEBC-4F59-838E-2F7BE5013F2C} = {E9A0F411-88AE-4F98-990C-B9C142633999}
 		{B9506DEC-A926-44EC-A7FF-474EC33C04C0} = {E9A0F411-88AE-4F98-990C-B9C142633999}
@@ -203,6 +202,7 @@ Global
 		{1E395DD0-E7EA-4176-83F7-8A3C82614FBA} = {8FCAC7A8-4BE0-4BD8-B8BC-CE9E5D76E71D}
 		{B0FCEA33-F00C-47EE-A476-5A8DC436BF4D} = {8FCAC7A8-4BE0-4BD8-B8BC-CE9E5D76E71D}
 		{884D02B6-B2AD-48D6-B99B-01F6E971F451} = {8FCAC7A8-4BE0-4BD8-B8BC-CE9E5D76E71D}
+		{05633971-C56E-4DC4-AC2B-B6B40B20BC26} = {AF186624-1B86-4F54-A4EF-97F83DC8C89E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF5831DA-E09D-4927-B6C8-F49400410B06}

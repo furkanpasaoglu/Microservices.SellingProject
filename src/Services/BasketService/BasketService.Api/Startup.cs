@@ -27,9 +27,12 @@ namespace BasketService.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILogger<Startup> _logger;
+
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -50,6 +53,8 @@ namespace BasketService.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
+            _logger.LogInformation("System up and running - From Configure {TestParam}", "Furkan");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -94,15 +99,6 @@ namespace BasketService.Api
                     EventNameSuffix = "IntegrationEvent",
                     SubscriberClientAppName = "BasketService",
                     EventBusType = EventBusType.RabbitMQ,
-                    Connection = new ConnectionFactory()
-                    {
-                        HostName = "localhost"
-                        //HostName = "localhost",
-                        //Port = 15672,
-                        //UserName = "guest",
-                        //Password = "guest",
-                        //VirtualHost="/"
-                    }
 
                     //Connection = new ConnectionFactory()
                     //{

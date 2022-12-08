@@ -1,23 +1,22 @@
 ﻿using EventBus.Base.Abstraction;
 using Microsoft.Extensions.Logging;
-using NotificationService.IntegrationEvents.Events;
+using PaymentService.Api.IntegrationEvents.Events;
+using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NotificationService.IntegrationEvents.EventHandlers
 {
-    public class OrderPaymentFailedIntegrationEventHandler : IIntegrationEventHandler<OrderPaymentFailedIntegrationEvent>
+    class OrderPaymentFailedIntegrationEventHandler : IIntegrationEventHandler<OrderPaymentFailedIntegrationEvent>
     {
-        private readonly ILogger<OrderPaymentFailedIntegrationEvent> _logger;
-
-        public OrderPaymentFailedIntegrationEventHandler(ILogger<OrderPaymentFailedIntegrationEvent> logger)
-        {
-            _logger = logger;
-        }
-
         public Task Handle(OrderPaymentFailedIntegrationEvent @event)
         {
-            // Send Fail Notification (Sms, Email, Push)
+            // Send Fail Notification (Sms, EMail, Push)
 
-            _logger.LogInformation($"Order Payment Failed with OrderId: {@event.OrderId}, ErrorMessage: {@event.ErrorMessage}");
+            Log.Logger.Information($"Order Payment failed with OrderId: {@event.OrderId}, ErrorMessage: {@event.ErrorMessage}");
 
             return Task.CompletedTask;
         }

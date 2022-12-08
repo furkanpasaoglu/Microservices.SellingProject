@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.ApiGateway.Extensions;
+using Web.ApiGateway.Infrastructure;
+using Web.ApiGateway.Services;
+using Web.ApiGateway.Services.Interfaces;
 
 namespace Web.ApiGateway
 {
@@ -36,6 +41,24 @@ namespace Web.ApiGateway
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web.ApiGateway", Version = "v1" });
             });
+
+            services.AddScoped<ICatalogService, CatalogService>();
+            services.AddScoped<IBasketService, BasketService>();
+
+            services.ConfigureAuth(Configuration);
+
+            services.AddOcelot().AddConsul();
+
+            ConfigureHttpClient(services);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.SetIsOriginAllowed((host) => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +75,12 @@ namespace Web.ApiGateway
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -60,6 +89,24 @@ namespace Web.ApiGateway
             });
 
             await app.UseOcelot();
+        }
+
+        private void ConfigureHttpClient(IServiceCollection services)
+        {
+            services.AddTransient<HttpClientDelegatingHandler>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddHttpClient("basket", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["urls:basket"]);
+            })
+            .AddHttpMessageHandler<HttpClientDelegatingHandler>();
+
+            services.AddHttpClient("catalog", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["urls:catalog"]);
+            })
+            .AddHttpMessageHandler<HttpClientDelegatingHandler>();
         }
     }
 }

@@ -1,5 +1,5 @@
-using EventBus.Base.Abstraction;
 using EventBus.Base;
+using EventBus.Base.Abstraction;
 using EventBus.Factory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,13 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PaymentService.Api.IntegrationEvents.EventHandlers;
+using PaymentService.Api.IntegrationEvents.Events;
 using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PaymentService.Api.IntegrationEvents.EventHandlers;
-using PaymentService.Api.IntegrationEvents.Events;
 
 namespace PaymentService.Api
 {
@@ -40,7 +40,7 @@ namespace PaymentService.Api
             });
 
             services.AddLogging(configure =>
-            {
+            { 
                 configure.AddConsole();
                 configure.AddDebug();
             });
@@ -55,13 +55,13 @@ namespace PaymentService.Api
                     EventNameSuffix = "IntegrationEvent",
                     SubscriberClientAppName = "PaymentService",
                     EventBusType = EventBusType.RabbitMQ,
-                    //Connection = new ConnectionFactory()
-                    //{
-                    //    HostName = "localhost",
-                    //    Port = 15672,
-                    //    UserName = "guest",
-                    //    Password = "guest"
-                    //},
+                    Connection = new ConnectionFactory()
+                    {
+                        HostName = "localhost",
+                        Port = 15672,
+                        UserName = "guest",
+                        Password = "guest"
+                    },
                     //Connection = new ConnectionFactory()
                     //{
                     //    HostName = "c_rabbitmq"
@@ -92,6 +92,7 @@ namespace PaymentService.Api
             {
                 endpoints.MapControllers();
             });
+
 
             IEventBus eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             eventBus.Subscribe<OrderStartedIntegrationEvent, OrderStartedIntegrationEventHandler>();

@@ -25,20 +25,34 @@
       "UseServiceDiscovery": true,
       "ServiceName": "BasketService",
 
-      "DownstreamPathTemplate": "/api/basket/{everything}",
+      "DownstreamPathTemplate": "/api/Basket/{everything}",
       "DownstreamScheme": "http",
 
       "UpstreamPathTemplate": "/basket/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+      "UpstreamScheme": "http"
+    },
+    {
+      "UseServiceDiscovery": true,
+      "ServiceName": "OrderService",
+
+      "DownstreamPathTemplate": "/api/order/{everything}",
+      "DownstreamScheme": "http",
+
+      "UpstreamPathTemplate": "/order/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
       "UpstreamScheme": "http"
     }
   ],
 
 
+
   "GlobalConfiguration": {
+    //"BaseUrl": "http://webapigateway.api:5000",
     "BaseUrl": "http://localhost:5000",
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
+      //"Host": "c_consul",
+      "Host": "http://localhost:5000",
       "Port": 8500,
       "Type": "Consul"
     }

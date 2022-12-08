@@ -1,6 +1,10 @@
 ﻿using EventBus.Base.Events;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace NotificationService.IntegrationEvents.Events
+namespace PaymentService.Api.IntegrationEvents.Events
 {
     public class OrderPaymentFailedIntegrationEvent : IntegrationEvent
     {

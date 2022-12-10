@@ -14,17 +14,17 @@ namespace OrderService.Api.Controllers
     public class OrderController : ControllerBase
     {
 
-        private readonly IMediator _mediator;
+        private readonly IMediator mediator;
 
         public OrderController(IMediator mediator)
         {
-            _mediator = mediator;
+            this.mediator = mediator;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderDetailsById(Guid id)
         {
-            var res = await _mediator.Send(new GetOrderDetailsQuery(id));
+            var res = await mediator.Send(new GetOrderDetailsQuery(id));
 
             return Ok(res);
         }

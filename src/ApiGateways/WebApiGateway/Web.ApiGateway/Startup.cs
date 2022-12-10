@@ -1,10 +1,13 @@
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
@@ -34,9 +37,14 @@ namespace Web.ApiGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOcelot().AddConsul();
-
             services.AddControllers();
+
+            services.AddHealthChecks()
+                .AddCheck("self", () => HealthCheckResult.Healthy());
+            //.AddUrlGroup(new Uri("http://localhost:5005/hc"), name: "identityapi-check", tags: new string[] { "identityapi" });
+
+            services.AddHealthChecksUI().AddInMemoryStorage();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web.ApiGateway", Version = "v1" });
@@ -59,6 +67,8 @@ namespace Web.ApiGateway
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,33 +84,40 @@ namespace Web.ApiGateway
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecksUI();
             });
+
+            app.UseHealthChecks("/health", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
+
+            app.UseHealthChecksUI(config => config.UIPath = "/hc-ui");
+
 
             await app.UseOcelot();
         }
 
         private void ConfigureHttpClient(IServiceCollection services)
         {
-            services.AddTransient<HttpClientDelegatingHandler>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<HttpClientDelegatingHandler>();
 
             services.AddHttpClient("basket", c =>
             {
                 c.BaseAddress = new Uri(Configuration["urls:basket"]);
             })
-            .AddHttpMessageHandler<HttpClientDelegatingHandler>();
+            .AddHttpMessageHandler<HttpClientDelegatingHandler>()
+            ;
 
             services.AddHttpClient("catalog", c =>
             {

@@ -99,12 +99,11 @@ namespace BasketService.Api
                     EventNameSuffix = "IntegrationEvent",
                     SubscriberClientAppName = "BasketService",
                     EventBusType = EventBusType.RabbitMQ,
-
-                    //Connection = new ConnectionFactory()
-                    //{
-                    //    //HostName = "c_rabbitmq"
-                    //    HostName = "http://localhost:15672"
-                    //}
+                    Connection = new ConnectionFactory()
+                    {
+                        HostName = "c_rabbitmq"
+                        //HostName = "http://localhost:15672"
+                    }
                 };
 
                 return EventBusFactory.Create(config, sp);

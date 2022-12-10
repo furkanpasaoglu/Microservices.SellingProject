@@ -36,6 +36,8 @@ namespace NotificationService
 
 
             Log.Logger.Information("Application is Running....");
+
+            Console.ReadKey();
         }
 
         private static void ConfigureServices(ServiceCollection services)

@@ -1,8 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+		<UserSecretsId>a7f1a0bb-382f-47c1-811f-013fb1433d3b</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..\..</DockerfileContext>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Consul" Version="1.6.10.4" />
@@ -24,11 +28,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.Base\EventBus.Base.csproj" />
-	  <ProjectReference Include="..\..\BasketService\BasketService.Api\BasketService.Api.csproj" />
-	  <ProjectReference Include="..\OrderService.Application\OrderService.Application.csproj" />
-	  <ProjectReference Include="..\OrderService.Domain\OrderService.Domain.csproj" />
-	  <ProjectReference Include="..\OrderService.Infrastructure\OrderService.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.Base\EventBus.Base.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.Factory\EventBus.Factory.csproj" />
+		<ProjectReference Include="..\OrderService.Application\OrderService.Application.csproj" />
+		<ProjectReference Include="..\OrderService.Domain\OrderService.Domain.csproj" />
+		<ProjectReference Include="..\OrderService.Infrastructure\OrderService.Infrastructure.csproj" />
 	</ItemGroup>
-
 </Project>
